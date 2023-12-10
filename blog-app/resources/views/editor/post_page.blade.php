@@ -13,11 +13,11 @@
         }
         .div_center {
             text-align: center;
-            padding: 30px;
+            padding: 10px;
         }
         label {
-            display: inline-block;
-            width: 200px;
+            display: block;
+            
         }
     </style>
 
@@ -33,7 +33,17 @@
 
                 {{session()->get('message')}}
             </div>
+
         @endif
+        @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
         <h1 class="post_title">Dodaj Post</h1>
         <div>
             <form action="{{url('add_post')}}" method="POST" enctype="multipart/form-data" >
@@ -44,7 +54,7 @@
                 </div>
                 <div class="div_center">
                     <label>Treść wpisu</label>
-                    <textarea name="description"></textarea>
+                    <textarea cols="50" rows="10" name="description"></textarea>
                 </div>
                 <div class="div_center">
                     <label>Dodaj zdjęcie</label>

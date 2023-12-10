@@ -33,6 +33,15 @@
                 {{session()->get('message')}}
             </div>
         @endif
+        @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
         <h1 class="post_title">Dodaj użytkownika</h1>
         <div>
             <form action="{{url('add_user')}}" method="POST" enctype="multipart/form-data" >

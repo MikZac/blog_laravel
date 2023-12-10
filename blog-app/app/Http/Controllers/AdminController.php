@@ -16,6 +16,15 @@ class AdminController extends Controller
     }
     public function add_user(Request $request)
     {
+
+        $request->validate([
+            'name' => 'required|min:3|max:200',
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+            'usertype' => 'required'
+        ]);
+    
+
         $user= new User;
         $user->name = $request->name;
         $user->email = $request->email;
@@ -28,7 +37,7 @@ class AdminController extends Controller
         $user->save();
         return redirect()->back()->with('message', 'Użytkownik dodany');
     }
-    public function show_user() {
+  public function show_user() {
         $users = User::all();
         return view('admin.show_user', compact('users'));
     }

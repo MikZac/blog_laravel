@@ -15,6 +15,13 @@ class EditorController extends Controller
     }
     public function add_post(Request $request)
     {
+        $request->validate([
+            'title' => 'required|min:3|max:200',
+            'description' => 'required',
+            'image' => 'required'
+        ]);
+    
+        
 
         $user=Auth()->user();
         $user_id = $user->id;
